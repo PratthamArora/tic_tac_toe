@@ -11,23 +11,15 @@ import java.util.*
 
 class SecondActivity : AppCompatActivity() {
 
-    var activePlayer = 1
-    var player1 = ArrayList<Int>()
-    var player2 = ArrayList<Int>()
-    var winner = 0
-    var checked = 0
+    private var activePlayer = 1
+    private var player1 = ArrayList<Int>()
+    private var player2 = ArrayList<Int>()
+    private var winner = 0
+    private var checked = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-
-        val data = intent.getIntExtra("data", 1)
-
-
-
-
-
-
 
         table.setBackgroundResource(android.R.color.white)
         bt_restart.setBackgroundResource(android.R.color.holo_green_dark)
@@ -45,13 +37,13 @@ class SecondActivity : AppCompatActivity() {
         bt_restart.setOnClickListener { recreate() }
     }
 
-    fun game(v: View, id: Int) {
+    private fun game(v: View, id: Int) {
 
 
         val selectBt = v as Button
         if (activePlayer == 1) {
             selectBt.setBackgroundResource(R.color.colorPrimary)
-            selectBt.setText("X")
+            selectBt.text = "X"
             player1.add(id)
             checkWinner()
             if (winner == 0) {
@@ -69,7 +61,7 @@ class SecondActivity : AppCompatActivity() {
 
         } else {
             selectBt.setBackgroundResource(R.color.colorAccent)
-            selectBt.setText("O")
+            selectBt.text = "O"
             player2.add(id)
             checkWinner()
             if (winner == 0) {
@@ -89,7 +81,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
 
-    fun checkWinner() {
+    private fun checkWinner() {
 
         checked++
 
@@ -157,40 +149,6 @@ class SecondActivity : AppCompatActivity() {
 
     }
 
-    fun autoPlay() {
-
-        val emptyCells = ArrayList<Int>()
-
-//        if (checked == 9) {
-//            Toast.makeText(this, "MATCH DRAWN", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-
-        for (i in 1..9) {
-            if (!(player1.contains(i) || player2.contains(i))) {
-                emptyCells.add(i)
-            }
-        }
-
-        val r = Random()
-        val rIndex = r.nextInt(emptyCells.size - 0) + 0
-
-        val id = emptyCells[rIndex]
-
-        var btSelect: Button? = null
-        when (id) {
-            1 -> btSelect = bt_1 //findViewById<Button>(R.id.bt_1)
-            2 -> btSelect = bt_2 //findViewById<Button>(R.id.bt_2)
-            3 -> btSelect = bt_3 //findViewById<Button>(R.id.bt_3)
-            4 -> btSelect = bt_4 //findViewById<Button>(R.id.bt_4)
-            5 -> btSelect = bt_5 //findViewById<Button>(R.id.bt_5)
-            6 -> btSelect = bt_6 //findViewById<Button>(R.id.bt_6)
-            7 -> btSelect = bt_7 //findViewById<Button>(R.id.bt_7)
-            8 -> btSelect = bt_8 //findViewById<Button>(R.id.bt_8)
-            9 -> btSelect = bt_9 //findViewById<Button>(R.id.bt_9)
-        }
-        game(btSelect!!, id)
-    }
 
     private fun disableAll() {
         bt_1.isEnabled = false

@@ -11,19 +11,15 @@ import java.util.*
 
 class ThirdActivity : AppCompatActivity() {
 
-    var activePlayer = 1
-    var player1 = ArrayList<Int>()
-    var player2 = ArrayList<Int>()
-    var winner = 0
-    var checked = 0
+    private var activePlayer = 1
+    private var player1 = ArrayList<Int>()
+    private var player2 = ArrayList<Int>()
+    private var winner = 0
+    private var checked = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-
-        val data = intent.getIntExtra("data", 1)
-
-
 
         table.setBackgroundResource(android.R.color.white)
         bt_restart.setBackgroundResource(android.R.color.holo_green_dark)
@@ -41,13 +37,13 @@ class ThirdActivity : AppCompatActivity() {
         bt_restart.setOnClickListener { recreate() }
     }
 
-    fun game(v: View, id: Int) {
+    private fun game(v: View, id: Int) {
 
 
         val selectBt = v as Button
         if (activePlayer == 1) {
             selectBt.setBackgroundResource(R.color.colorPrimary)
-            selectBt.setText("X")
+            selectBt.text = "X"
             player1.add(id)
             checkWinner()
             if (winner == 0) {
@@ -65,7 +61,7 @@ class ThirdActivity : AppCompatActivity() {
 
         } else {
             selectBt.setBackgroundResource(R.color.colorAccent)
-            selectBt.setText("O")
+            selectBt.text = "O"
             player2.add(id)
             checkWinner()
             if (winner == 0) {
@@ -85,7 +81,7 @@ class ThirdActivity : AppCompatActivity() {
     }
 
 
-    fun checkWinner() {
+    private fun checkWinner() {
 
         checked++
 
@@ -153,7 +149,7 @@ class ThirdActivity : AppCompatActivity() {
 
     }
 
-    fun autoPlay() {
+    private fun autoPlay() {
 
         val emptyCells = ArrayList<Int>()
 

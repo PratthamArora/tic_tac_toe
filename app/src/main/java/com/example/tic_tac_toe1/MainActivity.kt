@@ -13,13 +13,11 @@ class MainActivity : AppCompatActivity() {
 
         btn1.setOnClickListener {
             val intent = Intent(this, ThirdActivity::class.java)
-            intent.putExtra("data", 1)
             startActivity(intent)
         }
 
         btn2.setOnClickListener {
             val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("data", 2)
             startActivity(intent)
         }
     }
